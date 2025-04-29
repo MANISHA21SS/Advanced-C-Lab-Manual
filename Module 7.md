@@ -15,14 +15,66 @@ Else
 6.	Return 0
  
 Program:
+```
+#include <stdio.h>
 
-//type your code here
+#define MAX 100
 
+// Define a structure to hold person information
+struct Person {
+    char name[50];
+    int age;
+};
 
+int main() {
+    struct Person people[MAX];
+    int n, i;
+
+    printf("Enter number of people: ");
+    scanf("%d", &n);
+
+    // Input details for each person
+    for (i = 0; i < n; i++) {
+        printf("\nEnter details for person %d:\n", i + 1);
+        printf("Name: ");
+        scanf(" %[^\n]", people[i].name);  // Read string with spaces
+        printf("Age: ");
+        scanf("%d", &people[i].age);
+    }
+
+    // Check eligibility
+    printf("\n--- Vaccine Eligibility ---\n");
+    for (i = 0; i < n; i++) {
+        printf("%s (Age: %d): ", people[i].name, people[i].age);
+        if (people[i].age >= 18) {
+            printf("Eligible for vaccination\n");
+        } else {
+            printf("Not eligible for vaccination\n");
+        }
+    }
+
+    return 0;
+}
+```
 Output:
+Enter number of people: 3
 
-//paste your output here
+Enter details for person 1:
+Name: Manisha
+Age: 20
 
+Enter details for person 2:
+Name: Reshma
+Age: 16
+
+Enter details for person 3:
+Name: Vasu
+Age: 65
+
+--- Vaccine Eligibility ---
+Manisha (Age: 20): Eligible for vaccination
+Reshma (Age: 16): Not eligible for vaccination
+Vasu (Age: 65): Eligible for vaccination
 
 Result:
 Thus, the program is verified successfully. 
@@ -43,19 +95,66 @@ Algorithm:
 7.	Return 0
  
 Program:
+```
+#include <stdio.h>
 
-//type your code here
+// Define structure
+struct Student {
+    char name[50];
+    int marks1;
+    int marks2;
+    float average;
+};
 
+// Function to display student details (pass structure as argument)
+void displayStudent(struct Student s) {
+    printf("\nStudent Details:\n");
+    printf("Name: %s\n", s.name);
+    printf("Marks 1: %d\n", s.marks1);
+    printf("Marks 2: %d\n", s.marks2);
+    printf("Average: %.2f\n", s.average);
+}
 
+// Function to calculate average and return updated structure
+struct Student calculateAverage(struct Student s) {
+    s.average = (s.marks1 + s.marks2) / 2.0;
+    return s;
+}
 
+int main() {
+    struct Student s1;
+
+    // Input data
+    printf("Enter student name: ");
+    scanf(" %[^\n]", s1.name);
+
+    printf("Enter marks 1: ");
+    scanf("%d", &s1.marks1);
+
+    printf("Enter marks 2: ");
+    scanf("%d", &s1.marks2);
+
+    // Call function to calculate average and return updated structure
+    s1 = calculateAverage(s1);
+
+    // Call function to display student info
+    displayStudent(s1);
+
+    return 0;
+}
+```
 
 Output:
 
+Enter student name: Manisha
+Enter marks 1: 85
+Enter marks 2: 90
 
-//paste your output here
-
-
-
+Student Details:
+Name: Manisha
+Marks 1: 85
+Marks 2: 90
+Average: 87.50
 
 Result:
 Thus, the program is verified successfully
@@ -85,26 +184,46 @@ Use scanf to input the file name into the name array.
 5.	Return 0 to indicate successful program execution.
  
 Program:
+```
+#include <stdio.h>
 
-//type your code here
+int main() {
+    FILE *fp;
+    char filename[100];
+    char content[500];
 
+    // Get the file name from the user
+    printf("Enter the file name to create/write: ");
+    scanf("%s", filename);
 
+    // Open the file in write mode
+    fp = fopen(filename, "w");
 
+    // Check if the file was opened successfully
+    if (fp == NULL) {
+        printf("Error opening the file!\n");
+        return 1;
+    }
 
+    // Get content to write to the file
+    printf("Enter content to write to the file:\n");
+    getchar(); // To consume newline left by previous scanf
+    fgets(content, sizeof(content), stdin);
+
+    // Write content to the file
+    fputs(content, fp);
+
+    printf("File '%s' written successfully.\n", filename);
+
+    // Close the file
+    fclose(fp);
+
+    return 0;
+}
+```
 Output:
-
-
-//paste your output here
-
-
-
-
-
-
-
-
-
-
+Enter the file name to create/write: example.txt
+Error opening the file!
 
 Result:
 Thus, the program is verified successfully
@@ -132,21 +251,59 @@ Use scanf to input the file name into the name array and the number of strings i
 5.	Return 0 to indicate successful program execution.
  
 Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-//type your code here
+int main() {
+    char filename[100];
+    char initialContent[500], additionalContent[500];
+    FILE *fp;
 
+    // Step 1: Get the file name from user
+    printf("Enter the file name (with extension): ");
+    scanf("%99s", filename);
+    getchar();  // Clear the newline from input buffer
 
+    // Step 2: Open the file in write mode to write initial content
+    fp = fopen(filename, "w");
+    if (fp == NULL) {
+        perror("Error opening file for writing");
+        return EXIT_FAILURE;
+    }
 
+    // Step 3: Get initial content from user and write to file
+    printf("\nEnter the initial content to write to the file:\n");
+    fgets(initialContent, sizeof(initialContent), stdin);
+    fprintf(fp, "%s", initialContent);
+    fclose(fp);  // Close the file after writing
 
+    // Step 4: Open the file again in append mode to insert more text
+    fp = fopen(filename, "a");
+    if (fp == NULL) {
+        perror("Error opening file for appending");
+        return EXIT_FAILURE;
+    }
+
+    printf("\nEnter the additional text to insert (append to file):\n");
+    fgets(additionalContent, sizeof(additionalContent), stdin);
+    fprintf(fp, "%s", additionalContent);
+    fclose(fp);  // Close the file after appending
+
+    printf("\nFile '%s' updated successfully.\n", filename);
+    return 0;
+}
+```
 Output:
+Enter the file name (with extension): notes.txt
 
+Enter the initial content to write to the file:
+C programming is powerful.
 
-//paste your output here
+Enter the additional text to insert (append to file):
+It supports file handling too.
 
-
-
-
-
+File 'notes.txt' updated successfully.
 
 Result:
 Thus, the program is verified successfully
@@ -186,21 +343,47 @@ Algorithm:
 13.End the program by returning 0.
 
 Program:
+```
+#include <stdio.h>
 
-//type your code here
+// Define structure to store student information
+struct Student {
+    char name[50];
+    int rollNumber;
+    float marks;
+};
 
+int main() {
+    struct Student s;
 
+    // Input student details
+    printf("Enter student name: ");
+    scanf(" %[^\n]", s.name); // Reads string with spaces
 
+    printf("Enter roll number: ");
+    scanf("%d", &s.rollNumber);
 
+    printf("Enter marks: ");
+    scanf("%f", &s.marks);
+
+    // Display student details
+    printf("\n--- Student Details ---\n");
+    printf("Name       : %s\n", s.name);
+    printf("Roll Number: %d\n", s.rollNumber);
+    printf("Marks      : %.2f\n", s.marks);
+
+    return 0;
+}
+```
 Output:
+Enter student name: Manisha selvakumari.S.S.
+Enter roll number: 101
+Enter marks: 89.5
 
-
-//paste your output here
-
-
-
-
-
+--- Student Details ---
+Name       : Manisha selvakumari.S.S.
+Roll Number: 101
+Marks      : 89.50
 
 Result:
 Thus, the program is verified successfully
