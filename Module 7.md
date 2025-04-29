@@ -15,14 +15,66 @@ Else
 6.	Return 0
  
 Program:
+```
+#include <stdio.h>
 
-//type your code here
+#define MAX 100
 
+// Define a structure to hold person information
+struct Person {
+    char name[50];
+    int age;
+};
 
+int main() {
+    struct Person people[MAX];
+    int n, i;
+
+    printf("Enter number of people: ");
+    scanf("%d", &n);
+
+    // Input details for each person
+    for (i = 0; i < n; i++) {
+        printf("\nEnter details for person %d:\n", i + 1);
+        printf("Name: ");
+        scanf(" %[^\n]", people[i].name);  // Read string with spaces
+        printf("Age: ");
+        scanf("%d", &people[i].age);
+    }
+
+    // Check eligibility
+    printf("\n--- Vaccine Eligibility ---\n");
+    for (i = 0; i < n; i++) {
+        printf("%s (Age: %d): ", people[i].name, people[i].age);
+        if (people[i].age >= 18) {
+            printf("Eligible for vaccination\n");
+        } else {
+            printf("Not eligible for vaccination\n");
+        }
+    }
+
+    return 0;
+}
+```
 Output:
+Enter number of people: 3
 
-//paste your output here
+Enter details for person 1:
+Name: Manisha
+Age: 20
 
+Enter details for person 2:
+Name: Reshma
+Age: 16
+
+Enter details for person 3:
+Name: Vasu
+Age: 65
+
+--- Vaccine Eligibility ---
+Manisha (Age: 20): Eligible for vaccination
+Reshma (Age: 16): Not eligible for vaccination
+Vasu (Age: 65): Eligible for vaccination
 
 Result:
 Thus, the program is verified successfully. 
@@ -43,11 +95,6 @@ Algorithm:
 7.	Return 0
  
 Program:
-
-//type your code here
-
-
-
 
 Output:
 
