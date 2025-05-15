@@ -48,6 +48,7 @@ Output:
 ![image](https://github.com/user-attachments/assets/bfacc505-cb34-494b-971c-ced950bf9c5c)
 
 Result:
+
 Thus, the program to search a given element in the given linked list is verified successfully.
 
 
@@ -89,9 +90,11 @@ temp->next=n;
 }
 ```
 Output:
+
 ![image](https://github.com/user-attachments/assets/6059c1bb-0ffb-4f00-b861-8dee440e1978)
 
 Result:
+
 Thus, the program to insert a node in a linked list is verified successfully.
 
 
@@ -127,9 +130,11 @@ void display()
 }
 ```
 Output:
+
 ![image](https://github.com/user-attachments/assets/da6b5cdb-2c07-42eb-8b4e-b4a4f1d6216d)
 
 Result:
+
 Thus, the program to traverse a doubly linked list is verified successfully. 
 
 
@@ -179,18 +184,17 @@ else
 }
 ```
 Output:
+
 ![image](https://github.com/user-attachments/assets/32da0658-eb22-436e-b5e0-4b3fa1069652)
 
 Result:
+
 Thus, the program to insert an element in doubly linked list is verified successfully.
 
 
 
 
 EXP NO:20 C FUNCTION TO DELETE A GIVEN ELEMENT IN THE GIVEN LINKED LIST
-
-
-
 
 Aim:
 To write a C function that deletes a given element from a linked list.
@@ -241,10 +245,12 @@ void delete()
 }
 ```
 Output:
+
 ![image](https://github.com/user-attachments/assets/8aa0099b-cdf4-4f98-984c-4fae7271f1bf)
 
 
 Result:
+
 Thus, the function that deletes a given element from a linked list is verified successfully.
 
 
